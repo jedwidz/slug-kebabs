@@ -1,0 +1,15 @@
+---
+// Renders a chat-transcript fragment produced by the chatlog_publish converter
+// (scripts/chatlog_publish in the Notes repo, `--format wpbody`). The fragment
+// already includes its own <div class="cowork-chat">…</div> wrapper; this
+// component just pulls in the scoped stylesheet and injects the HTML.
+import '../styles/chat.css';
+
+interface Props {
+	html: string;
+}
+
+const { html } = Astro.props;
+---
+
+<Fragment set:html={html} />

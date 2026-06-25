@@ -1,0 +1,71 @@
+/* "What are you?" chat styling — paste into WordPress:
+   Appearance → Customize → Additional CSS.
+   All rules are scoped under .cowork-chat so they won't touch the rest of the site.
+   The post body (wp-body.html) goes in a Custom HTML block, wrapped in
+   <div class="cowork-chat">…</div> (or <div class="cowork-chat tldr"> for the
+   condensed abridged version), which these selectors target.
+   Kept in sync with the converter's preview CSS (scripts/chatlog_publish). */
+
+.cowork-chat{--mb-bg:#2f6fed;--mb-fg:#fff;--ai-bg:#eceff4;--ai-fg:#1a1a1a;
+  --raw-bg:#fdf6e3;--raw-bd:#d9c89a;--quote-bg:#f3eefc;--quote-bd:#c9b8ec;
+  --tool-bg:#0f1419;--tool-fg:#d7e2ec;
+  max-width:720px;margin:0 auto;
+  font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+
+.cowork-chat .chat-msg{display:flex;flex-direction:column;margin:14px 0;max-width:86%}
+.cowork-chat .chat-msg.mb{margin-left:auto;align-items:flex-end}
+.cowork-chat .chat-msg.ai{margin-right:auto;align-items:flex-start}
+.cowork-chat .who{font-size:1.28rem;letter-spacing:.02em;opacity:.6;margin:0 6px 3px}
+/* image avatars (opt-in): full-opacity glyph + dimmed text label; first of each illuminated */
+.cowork-chat .who.who-img{opacity:1;display:flex;align-items:center;gap:6px}
+.cowork-chat .who-img .ava-img{width:26px;height:26px;object-fit:contain;flex:none}
+.cowork-chat .who-img .lab{opacity:.6;font-size:.8rem;letter-spacing:.02em}
+.cowork-chat .who-first.who-img .ava-img{width:80px;height:80px}
+.cowork-chat .bubble{border-radius:18px;padding:11px 15px}
+.cowork-chat .chat-msg.mb .bubble{background:var(--mb-bg);color:rgba(255,255,255,.85);border-bottom-right-radius:5px}
+.cowork-chat .chat-msg.ai .bubble{background:var(--ai-bg);color:#474d55;border-bottom-left-radius:5px}
+.cowork-chat .bubble p{margin:.5em 0}
+.cowork-chat .bubble p:first-child{margin-top:0}
+.cowork-chat .bubble p:last-child{margin-bottom:0}
+
+/* in-bubble blockquote: vertical rule + indent */
+.cowork-chat .bubble blockquote{border-left:3px solid currentColor;margin:.4em 0;padding:.1em 0 .1em .7em;opacity:.92}
+.cowork-chat .chat-msg.mb .bubble blockquote{border-left-color:rgba(255,255,255,.6)}
+.cowork-chat .chat-msg.ai .bubble blockquote{border-left-color:rgba(0,0,0,.22)}
+
+/* highlight reel — surface-read layer; pop via size, not background */
+.cowork-chat .hl{font-weight:600;font-size:1.07em;background:none;padding:0 .12em;line-height:1.2}
+.cowork-chat .chat-msg.mb .hl{color:#fff}
+.cowork-chat .chat-msg.ai .hl{color:var(--ai-fg)}
+
+/* links: orange, underline on hover only, visited lightened */
+.cowork-chat .bubble a,.cowork-chat .callout a{color:#d2691e;text-decoration:none}
+.cowork-chat .bubble a:hover,.cowork-chat .callout a:hover{text-decoration:underline}
+.cowork-chat .bubble a:visited,.cowork-chat .callout a:visited{color:#c98a55}
+.cowork-chat .chat-msg.mb a{color:#ffc488}
+.cowork-chat .chat-msg.mb a:visited{color:#ffe0bf}
+
+.cowork-chat .callout{margin:18px 0;border-radius:10px;padding:12px 16px;font-size:.94rem}
+.cowork-chat .callout .callout-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;opacity:.7;margin-bottom:6px;font-weight:600}
+.cowork-chat .callout .verbatim{white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.9em;line-height:1.5;margin:0}
+.cowork-chat .callout.raw{background:var(--raw-bg);border:1px solid var(--raw-bd);margin-left:auto;max-width:72%}
+.cowork-chat .callout.quote{background:var(--quote-bg);border:1px solid var(--quote-bd);max-width:62%;margin-left:auto}
+.cowork-chat .callout.quote .verbatim{font-family:Georgia,"Times New Roman",serif;text-align:justify}
+.cowork-chat .callout .hl{font-size:1em;background:none;font-weight:700;padding:0}
+
+.cowork-chat .toolblock{margin:18px 0;background:var(--tool-bg);color:var(--tool-fg);border-radius:10px;padding:12px 14px;overflow:auto}
+.cowork-chat .toolblock pre{margin:0;white-space:pre-wrap;font-family:ui-monospace,Menlo,monospace;font-size:0.9em}
+.cowork-chat .toolblock pre.cmd::before{content:"$ ";opacity:.5}
+.cowork-chat .toolblock pre.out{opacity:.8;margin-top:6px}
+
+/* condensed abridged (TL;DR): lighter + a touch smaller, no bold-pop on highlights */
+.cowork-chat.tldr{font-size:15px}
+.cowork-chat.tldr .hl{font-weight:400;font-size:1.02em}
+.cowork-chat.tldr .callout .hl{font-weight:400}
+
+/* post intro: opening "verse" + teaser (used on the What are you? post) */
+.verse{max-width:540px;margin:1.6em auto 1.2em;text-align:center;font-style:italic;
+  color:rgb(var(--gray-dark));line-height:1.7;font-size:1.05rem}
+.verse strong{font-style:normal}
+.teaser{max-width:720px;margin:0 auto 1.4em;text-align:center;color:rgb(var(--gray-dark))}
+.preamble{max-width:720px;margin:0 auto 1.6em;text-align:center;color:rgb(var(--gray));font-size:.9rem}
