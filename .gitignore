@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# tso — config is tracked; markers are stored as git tags (no state files)
+# worktree directories (anchored to repo root)
+/.tso-worktrees/
+/.worktrees/

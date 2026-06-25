@@ -1,0 +1,47 @@
+# tso configuration
+# Place this file at .tso/config.toml in your repo root.
+# Markers are stored as git tags under tso/<role>/.
+
+# ── Roles ─────────────────────────────────────────────────────────────────────
+# Define each participant role. 'tso' is a reserved role used for boundary
+# commits and tool-generated history — keep it distinct from human/AI roles.
+
+[roles.tso]
+name  = "tso"
+email = "jedwidz+tso@gmail.com"
+
+[roles.ai]
+name  = "AI Assistant"
+email = "jedwidz+ai@gmail.com"
+
+[roles."ai+"]
+name  = "AI Assistant+"
+email = "jedwidz+ai+@gmail.com"
+
+[roles.dr]
+name  = "Dr Assistant"
+email = "jedwidz+dr@gmail.com"
+
+[roles.mb]
+name  = "Jonathan Edwards"
+email = "jedwidz@gmail.com"
+
+# ── Topology ──────────────────────────────────────────────────────────────────
+# 'worktrees' mode: each participant works on their own home branch in a
+# separate git worktree under .worktrees/<nick>/.
+# Auto-detected from home branch name (tso/<ws>/@<nick>@<role>/home) — config
+# entry is optional but explicit for clarity.
+
+[topology]
+mode = "worktrees"
+
+# ── Options ───────────────────────────────────────────────────────────────────
+
+[options]
+# Emit an empty boundary commit at tso start and tso end.
+# Useful for marking turn boundaries in git log. Safe to drop during curation.
+boundary_commits = false
+
+# Require a clean working tree at tso end.
+# Override per-invocation with --force.
+end_requires_clean = true
