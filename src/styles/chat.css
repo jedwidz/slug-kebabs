@@ -29,7 +29,7 @@
 .cowork-chat .bubble p:last-child{margin-bottom:0}
 
 /* in-bubble blockquote: vertical rule + indent */
-.cowork-chat .bubble blockquote{border-left:3px solid currentColor;margin:.4em 0;padding:.1em 0 .1em .7em;opacity:.92}
+.cowork-chat .bubble blockquote{border-left:3px solid currentColor;margin:.4em 0;padding:.1em 0 .1em .7em;opacity:.92;font-size:.9em}
 .cowork-chat .chat-msg.mb .bubble blockquote{border-left-color:rgba(255,255,255,.6)}
 .cowork-chat .chat-msg.ai .bubble blockquote{border-left-color:rgba(0,0,0,.22)}
 
