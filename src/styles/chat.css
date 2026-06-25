@@ -21,7 +21,7 @@
 .cowork-chat .who-img .ava-img{width:26px;height:26px;object-fit:contain;flex:none}
 .cowork-chat .who-img .lab{opacity:.6;font-size:.8rem;letter-spacing:.02em}
 .cowork-chat .who-first.who-img .ava-img{width:80px;height:80px}
-.cowork-chat .bubble{border-radius:18px;padding:11px 15px}
+.cowork-chat .bubble{border-radius:18px;padding:11px 15px;overflow-wrap:anywhere}
 .cowork-chat .chat-msg.mb .bubble{background:var(--mb-bg);color:rgba(255,255,255,.85);border-bottom-right-radius:5px}
 .cowork-chat .chat-msg.ai .bubble{background:var(--ai-bg);color:#474d55;border-bottom-left-radius:5px}
 .cowork-chat .bubble p{margin:.5em 0}
@@ -47,14 +47,14 @@
 
 .cowork-chat .callout{margin:18px 0;border-radius:10px;padding:12px 16px;font-size:.94rem}
 .cowork-chat .callout .callout-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;opacity:.7;margin-bottom:6px;font-weight:600}
-.cowork-chat .callout .verbatim{white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.9em;line-height:1.5;margin:0}
+.cowork-chat .callout .verbatim{white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.9em;line-height:1.5;margin:0;overflow-wrap:anywhere;word-break:break-word}
 .cowork-chat .callout.raw{background:var(--raw-bg);border:1px solid var(--raw-bd);margin-left:auto;max-width:72%}
 .cowork-chat .callout.quote{background:var(--quote-bg);border:1px solid var(--quote-bd);max-width:62%;margin-left:auto}
 .cowork-chat .callout.quote .verbatim{font-family:Georgia,"Times New Roman",serif;text-align:justify}
 .cowork-chat .callout .hl{font-size:1em;background:none;font-weight:700;padding:0}
 
 .cowork-chat .toolblock{margin:18px 0;background:var(--tool-bg);color:var(--tool-fg);border-radius:10px;padding:12px 14px;overflow:auto}
-.cowork-chat .toolblock pre{margin:0;white-space:pre-wrap;font-family:ui-monospace,Menlo,monospace;font-size:0.9em}
+.cowork-chat .toolblock pre{margin:0;white-space:pre-wrap;font-family:ui-monospace,Menlo,monospace;font-size:0.9em;overflow-wrap:anywhere}
 .cowork-chat .toolblock pre.cmd::before{content:"$ ";opacity:.5}
 .cowork-chat .toolblock pre.out{opacity:.8;margin-top:6px}
 
