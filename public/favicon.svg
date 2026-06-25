@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
   <style>
     .ink { fill: none; stroke: #1a1a1a; }
-    .dot { fill: #1a1a1a; stroke: none; }
+    .dot { fill: #1a1a1a; }
     @media (prefers-color-scheme: dark) { .ink { stroke: #fff; } .dot { fill: #fff; } }
   </style>
   <circle class="ink" cx="64" cy="64" r="56" stroke-width="7"/>
-  <path class="ink" d="M40 50 Q64 64 88 50" stroke-width="11" stroke-linecap="round"/>
-  <circle class="dot" cx="64" cy="80" r="9"/>
-  <circle class="dot" cx="64" cy="102" r="9"/>
+  <circle class="dot" cx="64" cy="40" r="10"/>
+  <circle class="dot" cx="64" cy="64" r="10"/>
+  <circle class="dot" cx="64" cy="88" r="10"/>
 </svg>

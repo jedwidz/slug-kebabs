@@ -66,6 +66,5 @@
 /* post intro: opening "verse" + teaser (used on the What are you? post) */
 .verse{max-width:540px;margin:1.6em auto 1.2em;text-align:center;font-style:italic;
   color:rgb(var(--gray-dark));line-height:1.7;font-size:1.05rem}
-.verse strong{font-style:normal}
 .teaser{max-width:720px;margin:0 auto 1.4em;text-align:center;color:rgb(var(--gray-dark))}
 .preamble{max-width:720px;margin:0 auto 1.6em;text-align:center;color:rgb(var(--gray));font-size:.9rem}
