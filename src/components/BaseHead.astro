@@ -79,3 +79,11 @@ const jsonLd = isArticle
 <meta property="twitter:image" content={imageURL} />
 
 {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />}
+
+<!-- Cloudflare Web Analytics (privacy-light, no cookies) -->
+<script
+	is:inline
+	defer
+	src="https://static.cloudflareinsights.com/beacon.min.js"
+	data-cf-beacon='{"token": "bcd281d901fb4eb3a0de2bb39acdff09"}'
+></script>
