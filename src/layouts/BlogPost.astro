@@ -5,6 +5,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import ShareButton from '../components/ShareButton.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
@@ -66,6 +67,16 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
 				padding: 0.15em 0.6em;
 				border-radius: 999px;
 			}
+			.share-row {
+				display: flex;
+				justify-content: center;
+				margin: 0.6em 0 0.2em;
+			}
+			.share-row-bottom {
+				margin: 2.4em 0 0.5em;
+				padding-top: 1.6em;
+				border-top: 1px solid rgb(var(--gray-light));
+			}
 		</style>
 	</head>
 
@@ -92,9 +103,11 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
 						{tags && tags.length > 0 && (
 							<div class="tags">{tags.map((t) => <span class="tag">#{t}</span>)}</div>
 						)}
+						<div class="share-row"><ShareButton /></div>
 						<hr />
 					</div>
 					<slot />
+					<div class="share-row share-row-bottom"><ShareButton /></div>
 				</div>
 			</article>
 		</main>
