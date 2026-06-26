@@ -68,3 +68,11 @@
   color:rgb(var(--gray-dark));line-height:1.7;font-size:1.05rem}
 .teaser{max-width:720px;margin:0 auto 1.4em;text-align:center;color:rgb(var(--gray-dark))}
 .preamble{max-width:720px;margin:0 auto 1.6em;text-align:center;color:rgb(var(--gray));font-size:.9rem}
+
+/* end-of-post call to action (funnel TL;DR readers to the full transcript) */
+.post-cta{max-width:720px;margin:2.4em auto 1em;padding-top:1.6em;
+  border-top:1px solid rgb(var(--gray-light));text-align:center}
+.post-cta p{margin:0 0 1em;color:rgb(var(--gray-dark))}
+.post-cta a.cta-button{display:inline-block;text-decoration:none;background:var(--accent);
+  color:#fff;padding:.7em 1.4em;border-radius:8px;font-weight:600}
+.post-cta a.cta-button:hover{background:var(--accent-dark);color:#fff}
