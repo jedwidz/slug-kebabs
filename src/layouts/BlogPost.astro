@@ -9,12 +9,12 @@ import ShareButton from '../components/ShareButton.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
+const { title, seoTitle, description, pubDate, updatedDate, heroImage, heroImageAlt, tags } = Astro.props;
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} image={heroImage} pubDate={pubDate} updatedDate={updatedDate} tags={tags} />
+		<BaseHead title={seoTitle ?? title} description={description} image={heroImage} pubDate={pubDate} updatedDate={updatedDate} tags={tags} />
 		<style>
 			main {
 				width: calc(100% - 2em);
@@ -84,7 +84,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
 		<main>
 			<article>
 				<div class="hero-image">
-					{heroImage && <Image width={1020} height={Math.round((1020 * heroImage.height) / heroImage.width)} src={heroImage} alt="" />}
+					{heroImage && <Image width={1020} height={Math.round((1020 * heroImage.height) / heroImage.width)} src={heroImage} alt={heroImageAlt ?? `Hero image for “${title}”`} />}
 				</div>
 				<div class="prose">
 					<div class="title">
