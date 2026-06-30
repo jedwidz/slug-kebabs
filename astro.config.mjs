@@ -3,11 +3,25 @@
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
+import { buildLastmodMap } from './sitemap-lastmod.mjs';
+
+const lastmodByPath = buildLastmodMap();
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://slug-kebabs.dev',
-	integrations: [mdx(), sitemap()],
+	integrations: [
+		mdx(),
+		sitemap({
+			// Attach a meaningful <lastmod> to each URL so downstream consumers
+			// (e.g. IndexNow submission) can detect which pages actually changed.
+			serialize(item) {
+				const lastmod = lastmodByPath.get(new URL(item.url).pathname);
+				if (lastmod) item.lastmod = lastmod;
+				return item;
+			},
+		}),
+	],
 	fonts: [
 		{
 			provider: fontProviders.local(),

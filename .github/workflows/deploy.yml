@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -20,6 +20,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+      - name: Add IndexNow key file
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          if [ -z "$INDEXNOW_KEY" ]; then
+            echo "INDEXNOW_KEY secret is not set" >&2
+            exit 1
+          fi
+          # IndexNow requires the key to be served as <key>.txt at the site root.
+          printf '%s' "$INDEXNOW_KEY" > "public/$INDEXNOW_KEY.txt"
       - name: Build with Astro
         uses: withastro/action@v6
         with:
@@ -35,3 +45,33 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      # Full history + tags/branches so we can diff against the last submission.
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      # The `indexnow-submitted` branch points at the last commit whose changes
+      # were submitted. Resolve it as the diff base; absent => first run / full
+      # reindex (the script then submits everything).
+      - name: Resolve last submitted commit
+        id: base
+        run: |
+          git fetch origin indexnow-submitted:refs/remotes/origin/indexnow-submitted 2>/dev/null || true
+          if base=$(git rev-parse --verify --quiet refs/remotes/origin/indexnow-submitted); then
+            echo "ref=$base" >> "$GITHUB_OUTPUT"
+          else
+            echo "ref=" >> "$GITHUB_OUTPUT"
+            echo "No indexnow-submitted branch found; will submit all URLs."
+          fi
+      - name: Submit changed URLs to IndexNow
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+          SITE: https://slug-kebabs.dev
+          RANGE_BASE: ${{ steps.base.outputs.ref }}
+          # Force a full submission when run manually, e.g. after enabling IndexNow.
+          FORCE_ALL: ${{ github.event_name == 'workflow_dispatch' }}
+        run: node scripts/indexnow-submit.mjs
+      # Fast-forward the pointer to the deployed commit, but only after a
+      # successful submission so a failure is retried on the next deploy.
+      - name: Advance indexnow-submitted
+        run: git push origin HEAD:refs/heads/indexnow-submitted
